@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oshadirangika.netlify.app/sitemap.xml
