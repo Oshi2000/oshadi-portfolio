@@ -90,6 +90,11 @@ export const ResumeCTA: React.FC = () => {
                 >
                   Download Resume
                 </Button>
+                {downloadStarted && (
+                  <p role="status" className="text-xs text-emerald-300">
+                    Resume download started. Thank you for your interest.
+                  </p>
+                )}
                 <Button
                   variant="outline"
                   size="lg"
@@ -102,12 +107,6 @@ export const ResumeCTA: React.FC = () => {
                   GitHub Repository
                 </Button>
               </div>
-
-              {downloadStarted && (
-                <p className="text-xs text-emerald-400" role="status">
-                  Your resume download has started. Thank you for your interest.
-                </p>
-              )}
             </div>
 
           </div>

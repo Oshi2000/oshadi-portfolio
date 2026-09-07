@@ -28,6 +28,7 @@ export const Contact: React.FC = () => {
   });
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const copyEmail = () => {
     navigator.clipboard.writeText(personalProfile.socialLinks.email);
@@ -45,29 +46,33 @@ export const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('submitting');
+    setErrorMessage('');
 
     try {
       // Netlify form submission payload
-      const formData = new FormData();
-      formData.append('form-name', 'portfolio-contact');
-      formData.append('name', formState.name);
-      formData.append('email', formState.email);
-      formData.append('subject', formState.subject);
-      formData.append('message', formState.message);
+      const formData = new URLSearchParams({
+        'form-name': 'portfolio-contact',
+        name: formState.name,
+        email: formState.email,
+        subject: formState.subject,
+        message: formState.message,
+      });
 
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString(),
+        body: formData.toString(),
       });
 
-      if (response.ok || response.status === 200) {
+      if (response.ok) {
         setStatus('success');
         setFormState({ name: '', email: '', subject: '', message: '' });
       } else {
+        setErrorMessage('Your message could not be sent. Please email me directly at oshadirangika2300@gmail.com.');
         setStatus('error');
       }
     } catch {
+      setErrorMessage('Your message could not be sent. Please email me directly at oshadirangika2300@gmail.com.');
       setStatus('error');
     }
   };
@@ -202,7 +207,7 @@ export const Contact: React.FC = () => {
                   Message Sent Successfully!
                 </h4>
                 <p className="text-sm text-slate-600 max-w-md mx-auto">
-                  Thank you for reaching out. Your message has been sent to my email, and I will respond to the address you provided.
+                  Thank you for reaching out. I have received your message and will respond promptly.
                 </p>
                 <div className="pt-4">
                   <Button
@@ -211,27 +216,6 @@ export const Contact: React.FC = () => {
                     onClick={() => setStatus('idle')}
                   >
                     Send Another Message
-                  </Button>
-                </div>
-              </div>
-            ) : status === 'error' ? (
-              <div className="text-center py-10 space-y-4 animate-in fade-in">
-                <div className="w-16 h-16 bg-rose-50 text-rose-600 rounded-full flex items-center justify-center mx-auto border border-rose-200">
-                  <Mail className="w-8 h-8" />
-                </div>
-                <h4 className="text-2xl font-bold text-slate-900">
-                  Message Could Not Be Sent
-                </h4>
-                <p className="text-sm text-slate-600 max-w-md mx-auto">
-                  Please try again or email me directly at {personalProfile.socialLinks.email}.
-                </p>
-                <div className="pt-4">
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    onClick={() => setStatus('idle')}
-                  >
-                    Try Again
                   </Button>
                 </div>
               </div>
@@ -244,6 +228,12 @@ export const Contact: React.FC = () => {
                 onSubmit={handleSubmit}
                 className="space-y-4"
               >
+                {status === 'error' && (
+                  <div role="alert" className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+                    {errorMessage}
+                  </div>
+                )}
+
                 {/* Netlify Hidden Form Name */}
                 <input type="hidden" name="form-name" value="portfolio-contact" />
                 
