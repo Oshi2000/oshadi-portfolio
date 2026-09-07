@@ -3,6 +3,7 @@ import { Download, FileText, CheckCircle2, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { personalProfile } from '../../data/portfolioData';
 import { Button } from '../ui/Button';
+import { GitHubIcon } from '../ui/Icons';
 
 export const ResumeCTA: React.FC = () => {
   const triggerConfetti = () => {
@@ -74,17 +75,30 @@ export const ResumeCTA: React.FC = () => {
                 PDF Document • Updated 2026
               </div>
 
-              <Button
-                variant="primary"
-                size="lg"
-                href={personalProfile.socialLinks.resumeUrl}
-                download="Oshadi_Rangika_Resume.pdf"
-                onClick={triggerConfetti}
-                icon={<Download className="w-5 h-5" />}
-                className="w-full justify-center"
-              >
-                Download Resume
-              </Button>
+              <div className="flex w-full flex-col gap-2 sm:flex-row lg:flex-col">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  href={personalProfile.socialLinks.resumeUrl}
+                  download="Oshadi_Rangika_Resume.pdf"
+                  onClick={triggerConfetti}
+                  icon={<Download className="w-5 h-5" />}
+                  className="w-full justify-center"
+                >
+                  Download Resume
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  href={personalProfile.socialLinks.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  icon={<GitHubIcon className="w-5 h-5" />}
+                  className="w-full justify-center"
+                >
+                  GitHub Profile
+                </Button>
+              </div>
             </div>
 
           </div>

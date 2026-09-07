@@ -35,7 +35,7 @@ export const personalProfile: PersonalProfile = {
     phone: '+94 70 449 4723',
     location: 'Dankotuwa, Sri Lanka',
     linkedInUrl: 'https://www.linkedin.com/in/oshadi-rangika-795814254',
-    githubUrl: 'https://github.com/oshadirangika', // [ADD GITHUB URL if different]
+    githubUrl: 'https://github.com/Oshi2000',
     resumeUrl: '/assets/Oshadi_Rangika_Resume.pdf'
   }
 };
@@ -386,7 +386,7 @@ export const projects: Project[] = [
       'Agile Scrum',
       'PRINCE2'
     ],
-    githubUrl: 'https://github.com/oshadirangika', // [ADD GITHUB URL]
+    githubUrl: 'https://github.com/Oshi2000/oshadi-portfolio',
     liveUrl: undefined,
     architectureNotes: [
       'Offline-First Data Sync: Resilient conflict-resolution algorithm syncing queued local records once internet connectivity is restored.',
@@ -435,7 +435,7 @@ export const projects: Project[] = [
       'Node.js',
       'MongoDB'
     ],
-    githubUrl: 'https://github.com/oshadirangika', // [ADD GITHUB URL]
+    githubUrl: 'https://github.com/Oshi2000/oshadi-portfolio',
     liveUrl: undefined,
     architectureNotes: [
       'Vision Pipeline: Image preprocessing → Mask R-CNN wall segmentation → Vector polygon extraction → 3D mesh extrusion.',
@@ -480,7 +480,7 @@ export const projects: Project[] = [
       'REST APIs',
       'Postman'
     ],
-    githubUrl: 'https://github.com/oshadirangika', // [ADD GITHUB URL]
+    githubUrl: 'https://github.com/Oshi2000/oshadi-portfolio',
     liveUrl: undefined,
     architectureNotes: [
       'MERN Architecture: REST API backend communicating with React SPA via Axios, with JWT token-based authentication.',
@@ -518,7 +518,7 @@ export const projects: Project[] = [
       'MySQL',
       'REST APIs'
     ],
-    githubUrl: 'https://github.com/oshadirangika', // [ADD GITHUB URL]
+    githubUrl: 'https://github.com/Oshi2000/oshadi-portfolio',
     liveUrl: undefined,
     architectureNotes: [
       'Client-Server Architecture: Lightweight vanilla JS UI with asynchronous fetch requests to PHP backend endpoints and MySQL database.'
@@ -554,7 +554,7 @@ export const projects: Project[] = [
       'Page Object Model',
       'Git'
     ],
-    githubUrl: 'https://github.com/oshadirangika', // [ADD GITHUB URL]
+    githubUrl: 'https://github.com/Oshi2000/oshadi-portfolio',
     liveUrl: undefined
   },
   {
@@ -581,7 +581,7 @@ export const projects: Project[] = [
       'PHP',
       'MySQL'
     ],
-    githubUrl: 'https://github.com/oshadirangika', // [ADD GITHUB URL]
+    githubUrl: 'https://github.com/Oshi2000/oshadi-portfolio',
     liveUrl: undefined
   }
 ];
