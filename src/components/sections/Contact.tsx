@@ -65,12 +65,10 @@ export const Contact: React.FC = () => {
         setStatus('success');
         setFormState({ name: '', email: '', subject: '', message: '' });
       } else {
-        // Still treat local testing as successful mock
-        setStatus('success');
+        setStatus('error');
       }
     } catch {
-      // Fallback for local preview
-      setStatus('success');
+      setStatus('error');
     }
   };
 
@@ -204,7 +202,7 @@ export const Contact: React.FC = () => {
                   Message Sent Successfully!
                 </h4>
                 <p className="text-sm text-slate-600 max-w-md mx-auto">
-                  Thank you for reaching out. I have received your message and will respond promptly.
+                  Thank you for reaching out. Your message has been sent to my email, and I will respond to the address you provided.
                 </p>
                 <div className="pt-4">
                   <Button
@@ -213,6 +211,27 @@ export const Contact: React.FC = () => {
                     onClick={() => setStatus('idle')}
                   >
                     Send Another Message
+                  </Button>
+                </div>
+              </div>
+            ) : status === 'error' ? (
+              <div className="text-center py-10 space-y-4 animate-in fade-in">
+                <div className="w-16 h-16 bg-rose-50 text-rose-600 rounded-full flex items-center justify-center mx-auto border border-rose-200">
+                  <Mail className="w-8 h-8" />
+                </div>
+                <h4 className="text-2xl font-bold text-slate-900">
+                  Message Could Not Be Sent
+                </h4>
+                <p className="text-sm text-slate-600 max-w-md mx-auto">
+                  Please try again or email me directly at {personalProfile.socialLinks.email}.
+                </p>
+                <div className="pt-4">
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => setStatus('idle')}
+                  >
+                    Try Again
                   </Button>
                 </div>
               </div>

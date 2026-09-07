@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Download, FileText, CheckCircle2, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { personalProfile } from '../../data/portfolioData';
@@ -6,7 +6,10 @@ import { Button } from '../ui/Button';
 import { GitHubIcon } from '../ui/Icons';
 
 export const ResumeCTA: React.FC = () => {
+  const [downloadStarted, setDownloadStarted] = useState(false);
+
   const triggerConfetti = () => {
+    setDownloadStarted(true);
     try {
       confetti({
         particleCount: 100,
@@ -99,6 +102,12 @@ export const ResumeCTA: React.FC = () => {
                   GitHub Repository
                 </Button>
               </div>
+
+              {downloadStarted && (
+                <p className="text-xs text-emerald-400" role="status">
+                  Your resume download has started. Thank you for your interest.
+                </p>
+              )}
             </div>
 
           </div>
