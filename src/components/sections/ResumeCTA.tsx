@@ -75,7 +75,7 @@ export const ResumeCTA: React.FC = () => {
                 PDF Document • Updated 2026
               </div>
 
-              <div className="flex w-full flex-col gap-2 sm:flex-row lg:flex-col">
+              <div className="flex w-full flex-col gap-2">
                 <Button
                   variant="primary"
                   size="lg"
@@ -96,7 +96,7 @@ export const ResumeCTA: React.FC = () => {
                   icon={<GitHubIcon className="w-5 h-5" />}
                   className="w-full justify-center"
                 >
-                  GitHub Profile
+                  GitHub Repository
                 </Button>
               </div>
             </div>

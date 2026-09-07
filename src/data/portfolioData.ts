@@ -35,7 +35,7 @@ export const personalProfile: PersonalProfile = {
     phone: '+94 70 449 4723',
     location: 'Dankotuwa, Sri Lanka',
     linkedInUrl: 'https://www.linkedin.com/in/oshadi-rangika-795814254',
-    githubUrl: 'https://github.com/Oshi2000',
+    githubUrl: 'https://github.com/Oshi2000/oshadi-portfolio',
     resumeUrl: '/assets/Oshadi_Rangika_Resume.pdf'
   }
 };
