@@ -68,11 +68,11 @@ export const Contact: React.FC = () => {
         setStatus('success');
         setFormState({ name: '', email: '', subject: '', message: '' });
       } else {
-        setErrorMessage('Your message could not be sent. Please email me directly at oshadirangika2300@gmail.com.');
+        setErrorMessage(`Your message could not be sent. Please email me directly at ${personalProfile.socialLinks.email}.`);
         setStatus('error');
       }
     } catch {
-      setErrorMessage('Your message could not be sent. Please email me directly at oshadirangika2300@gmail.com.');
+      setErrorMessage(`Your message could not be sent. Please email me directly at ${personalProfile.socialLinks.email}.`);
       setStatus('error');
     }
   };
@@ -207,7 +207,7 @@ export const Contact: React.FC = () => {
                   Message Sent Successfully!
                 </h4>
                 <p className="text-sm text-slate-600 max-w-md mx-auto">
-                  Thank you for reaching out. I have received your message and will respond promptly.
+                  Thank you for reaching out. Your message has been delivered to my inbox. I will respond promptly.
                 </p>
                 <div className="pt-4">
                   <Button
