@@ -24,6 +24,7 @@ export const Button: React.FC<ButtonProps> = ({
   rel,
   download,
   isLoading = false,
+  onClick,
   ...props
 }) => {
   const baseStyles = 'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none cursor-pointer';
@@ -53,6 +54,7 @@ export const Button: React.FC<ButtonProps> = ({
         rel={rel || (target === '_blank' ? 'noopener noreferrer' : undefined)}
         download={download}
         className={combinedClassName}
+        onClick={onClick as unknown as React.MouseEventHandler<HTMLAnchorElement>}
       >
         {isLoading ? (
           <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />

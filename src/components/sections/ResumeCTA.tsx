@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Download, FileText, CheckCircle2, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { personalProfile } from '../../data/portfolioData';
@@ -6,7 +6,7 @@ import { Button } from '../ui/Button';
 import { GitHubIcon } from '../ui/Icons';
 
 export const ResumeCTA: React.FC = () => {
-  const [downloadStarted, setDownloadStarted] = useState(false);
+  const [downloadStarted, setDownloadStarted] = React.useState(false);
 
   const triggerConfetti = () => {
     setDownloadStarted(true);
@@ -91,8 +91,8 @@ export const ResumeCTA: React.FC = () => {
                   Download Resume
                 </Button>
                 {downloadStarted && (
-                  <p role="status" className="text-xs text-emerald-300">
-                    Resume download started. Thank you for your interest.
+                  <p role="status" className="text-xs text-emerald-400">
+                    Your resume download has started. Thank you for your interest!
                   </p>
                 )}
                 <Button

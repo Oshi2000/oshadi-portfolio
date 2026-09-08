@@ -28,7 +28,6 @@ export const Contact: React.FC = () => {
   });
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
 
   const copyEmail = () => {
     navigator.clipboard.writeText(personalProfile.socialLinks.email);
@@ -46,33 +45,29 @@ export const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('submitting');
-    setErrorMessage('');
 
     try {
       // Netlify form submission payload
-      const formData = new URLSearchParams({
-        'form-name': 'portfolio-contact',
-        name: formState.name,
-        email: formState.email,
-        subject: formState.subject,
-        message: formState.message,
-      });
+      const formData = new FormData();
+      formData.append('form-name', 'portfolio-contact');
+      formData.append('name', formState.name);
+      formData.append('email', formState.email);
+      formData.append('subject', formState.subject);
+      formData.append('message', formState.message);
 
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formData.toString(),
+        body: new URLSearchParams(formData as any).toString(),
       });
 
-      if (response.ok) {
+      if (response.ok || response.status === 200) {
         setStatus('success');
         setFormState({ name: '', email: '', subject: '', message: '' });
       } else {
-        setErrorMessage(`Your message could not be sent. Please email me directly at ${personalProfile.socialLinks.email}.`);
         setStatus('error');
       }
     } catch {
-      setErrorMessage(`Your message could not be sent. Please email me directly at ${personalProfile.socialLinks.email}.`);
       setStatus('error');
     }
   };
@@ -207,7 +202,7 @@ export const Contact: React.FC = () => {
                   Message Sent Successfully!
                 </h4>
                 <p className="text-sm text-slate-600 max-w-md mx-auto">
-                  Thank you for reaching out. Your message has been delivered to my inbox. I will respond promptly.
+                  Thank you for reaching out. Your message has been sent to {personalProfile.socialLinks.email}. I will respond promptly.
                 </p>
                 <div className="pt-4">
                   <Button
@@ -228,12 +223,6 @@ export const Contact: React.FC = () => {
                 onSubmit={handleSubmit}
                 className="space-y-4"
               >
-                {status === 'error' && (
-                  <div role="alert" className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
-                    {errorMessage}
-                  </div>
-                )}
-
                 {/* Netlify Hidden Form Name */}
                 <input type="hidden" name="form-name" value="portfolio-contact" />
                 
@@ -323,6 +312,15 @@ export const Contact: React.FC = () => {
                     Send Message
                   </Button>
                 </div>
+
+                {status === 'error' && (
+                  <p role="alert" className="text-sm text-rose-600 text-center pt-1">
+                    Your message could not be sent right now. Please email me directly at{' '}
+                    <a className="font-semibold underline" href={`mailto:${personalProfile.socialLinks.email}`}>
+                      {personalProfile.socialLinks.email}
+                    </a>.
+                  </p>
+                )}
 
                 <p className="text-[11px] text-slate-400 text-center pt-1 font-normal">
                   Powered by Netlify Forms with secure spam filtering.
